@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Flexify</title>
+
+<script src="http://base2.googlecode.com/svn/version/1.0/src/base2.js"></script>
+<script src="http://base2.googlecode.com/svn/version/1.0/src/base2-dom.js"></script>
+<script src="layout/orientation.js"></script>
+<link href="layout/orientation.css" rel="stylesheet">
+<script src="layout/layout.js"></script>
+
+<style>
+
+button {
+font-size: 1em;
+font-family: inherit;
+paddingk: 1px 20px;
+margink: 0 3px;
+}
+
+body {
+margin: 0;
+padding: 5px;
+background: #ece9d8;
+font-size: 0.7em;
+font-family: sans-serif;
+}
+</style>
+
+<!--
+<script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>
+-->
+
+<script src="../layout.js"></script>
+<script src="_examples.js"></script>
+<script src="sizzle/sizzle.js"></script>
+
+<script>
+
+onContent(function () {
+	// layout
+	var layout = new FullLayoutManager(document, 'scroll');
+	Sizzle('#container').forEach(function (element) {
+		layout.setOrientation(element, 'horizontal');
+		layout.setFlexibleProperty(element, 'width');
+		layout.setFlexibleProperty(element, 'height');
+	});
+	Sizzle('button').forEach(function (element) {
+		layout.setFlexibleProperty(element, 'width');
+		layout.setFlexibleProperty(element, 'height');
+	});
+	layout.calculate();
+});
+
+</script>
+
+</head>
+
+<body>
+<div id="container" style="background: blue">
+<button>This is a flexible button.</button>
+<button>This is a flexible button.</button>
+<button>This is a flexible button.</button>
+</div>
+</body>
+</html>
